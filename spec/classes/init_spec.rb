@@ -397,6 +397,18 @@ describe 'kerberos', :type => :class do
     end
   end
 
+  context 'on a Solaris' do
+    let :facts do
+      {
+        :osfamily       => 'Solaris',
+        :concat_basedir => '/dne',
+      }
+    end
+    describe 'with no parameters' do
+      it { should contain_class('kerberos::params') }
+    end
+  end
+
   context 'on an Unknown OS' do
     let :facts do
       {
