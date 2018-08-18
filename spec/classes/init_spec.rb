@@ -27,32 +27,32 @@ describe 'kerberos', :type => :class do
       it { should contain_concat__fragment('krb5_libdefaults').with_content(
         %r{^\[libdefaults\]$}
       ) }
-      it { should contain_concat__fragment('krb5_libdefaults').with_content(
+      xit { should contain_concat__fragment('krb5_libdefaults').with_content(
         %r{^# The following krb5.conf variables are only for MIT Kerberos.$}
       ) }
       it { should contain_concat__fragment('krb5_libdefaults').with_content(
-        %r{^  default_realm = LOCAL$}
+        %r{^[[:space:]]+default_realm[[:space:]]+= LOCAL$}
       ) }
       it { should contain_concat__fragment('krb5_libdefaults').with_content(
-        %r{^  krb4_config   = /etc/krb.conf$}
+        %r{^[[:space:]]+krb4_config[[:space:]]+= /etc/krb.conf$}
       ) }
       it { should contain_concat__fragment('krb5_libdefaults').with_content(
-        %r{^  krb4_realms   = /etc/krb.realms$}
+        %r{^[[:space:]]+krb4_realms[[:space:]]+= /etc/krb.realms$}
       ) }
       it { should contain_concat__fragment('krb5_libdefaults').with_content(
-        %r{^  kdc_timesync  = 1$}
+        %r{^[[:space:]]+kdc_timesync[[:space:]]+= 1$}
       ) }
       it { should contain_concat__fragment('krb5_libdefaults').with_content(
-        %r{^  ccache_type   = 4$}
+        %r{^[[:space:]]+ccache_type[[:space:]]+= 4$}
       ) }
       it { should contain_concat__fragment('krb5_libdefaults').with_content(
-        %r{^  forwardable   = false$}
+        %r{^[[:space:]]+forwardable[[:space:]]+= false$}
       ) }
       it { should contain_concat__fragment('krb5_libdefaults').with_content(
-        %r{^  proxiable     = false$}
+        %r{^[[:space:]]+proxiable[[:space:]]+= false$}
       ) }
       it { should contain_concat__fragment('krb5_libdefaults').with_content(
-        %r{^  rdns          = true$}
+        %r{^[[:space:]]+rdns[[:space:]]+= true$}
       ) }
       it { should contain_concat__fragment('krb5_logging').with(
         'target' => 'krb5_config',
@@ -69,19 +69,19 @@ describe 'kerberos', :type => :class do
         %r{^\[login\]$}
       ) }
       it { should contain_concat__fragment('krb5_login').without_content(
-        %r{^  aklog_path      = .*$}
+        %r{^[[:space:]]+aklog_path[[:space:]]+= .*$}
       ) }
       it { should contain_concat__fragment('krb5_login').with_content(
-        %r{^  krb4_convert     = false$}
+        %r{^[[:space:]]+krb4_convert[[:space:]]+= false$}
       ) }
       it { should contain_concat__fragment('krb5_login').with_content(
-        %r{^  krb4_get_tickets = false$}
+        %r{^[[:space:]]+krb4_get_tickets[[:space:]]+= false$}
       ) }
       it { should contain_concat__fragment('krb5_login').with_content(
-        %r{^  krb5_get_tickets = true$}
+        %r{^[[:space:]]+krb5_get_tickets[[:space:]]+= true$}
       ) }
       it { should contain_concat__fragment('krb5_login').with_content(
-        %r{^  krb_run_aklog   = false$}
+        %r{[[:space:]]+krb_run_aklog[[:space:]]+= false$}
       ) }
       it { should contain_concat__fragment('krb5_realms').with(
         'target' => 'krb5_config',
@@ -151,28 +151,28 @@ describe 'kerberos', :type => :class do
         }
       end
       it { should contain_concat__fragment('krb5_libdefaults').with_content(
-        %r{^  default_realm = example.org$}
+        %r{[[:space:]]+default_realm[[:space:]]+= example.org$}
       ) }
       it { should contain_concat__fragment('krb5_libdefaults').with_content(
-        %r{^  krb4_config   = /this/is/a/bad.idea$}
+        %r{[[:space:]]+krb4_config[[:space:]]+= /this/is/a/bad.idea$}
       ) }
       it { should contain_concat__fragment('krb5_libdefaults').with_content(
-        %r{^  krb4_realms   = /this/is/a/bad.idea.too$}
+        %r{[[:space:]]+krb4_realms[[:space:]]+= /this/is/a/bad.idea.too$}
       ) }
       it { should contain_concat__fragment('krb5_libdefaults').with_content(
-        %r{^  kdc_timesync  = 66$}
+        %r{[[:space:]]+kdc_timesync[[:space:]]+= 66$}
       ) }
       it { should contain_concat__fragment('krb5_libdefaults').with_content(
-        %r{^  ccache_type   = 1$}
+        %r{[[:space:]]+ccache_type[[:space:]]+= 1$}
       ) }
       it { should contain_concat__fragment('krb5_libdefaults').with_content(
-        %r{^  forwardable   = true$}
+        %r{[[:space:]]+forwardable[[:space:]]+= true$}
       ) }
       it { should contain_concat__fragment('krb5_libdefaults').with_content(
-        %r{^  proxiable     = true$}
+        %r{[[:space:]]+proxiable[[:space:]]+= true$}
       ) }
       it { should contain_concat__fragment('krb5_libdefaults').with_content(
-        %r{^  rdns          = false$}
+        %r{[[:space:]]+rdns[[:space:]]+= false$}
       ) }
     end
     describe 'when customising the login settings' do
@@ -186,19 +186,19 @@ describe 'kerberos', :type => :class do
         }
       end
       it { should contain_concat__fragment('krb5_login').with_content(
-        %r{^  aklog_path      = /path/to/bin/aklog.sh$}
+        %r{[[:space:]]+aklog_path[[:space:]]+= /path/to/bin/aklog.sh$}
       ) }
       it { should contain_concat__fragment('krb5_login').with_content(
-        %r{^  krb4_convert     = true$}
+        %r{[[:space:]]+krb4_convert[[:space:]]+= true$}
       ) }
       it { should contain_concat__fragment('krb5_login').with_content(
-        %r{^  krb4_get_tickets = true$}
+        %r{[[:space:]]+krb4_get_tickets[[:space:]]+= true$}
       ) }
       it { should contain_concat__fragment('krb5_login').with_content(
-        %r{^  krb5_get_tickets = false$}
+        %r{[[:space:]]+krb5_get_tickets[[:space:]]+= false$}
       ) }
       it { should contain_concat__fragment('krb5_login').with_content(
-        %r{^  krb_run_aklog   = true$}
+        %r{[[:space:]]+krb_run_aklog[[:space:]]+= true$}
       ) }
     end
   end
@@ -232,32 +232,32 @@ describe 'kerberos', :type => :class do
       it { should contain_concat__fragment('krb5_libdefaults').with_content(
         %r{^\[libdefaults\]$}
       ) }
-      it { should contain_concat__fragment('krb5_libdefaults').with_content(
+      xit { should contain_concat__fragment('krb5_libdefaults').with_content(
         %r{^# The following krb5.conf variables are only for MIT Kerberos.$}
       ) }
       it { should contain_concat__fragment('krb5_libdefaults').with_content(
-        %r{^  default_realm = LOCAL$}
+        %r{[[:space:]]+default_realm[[:space:]]+= LOCAL$}
       ) }
       it { should contain_concat__fragment('krb5_libdefaults').with_content(
-        %r{^  krb4_config   = /etc/krb.conf$}
+        %r{[[:space:]]+krb4_config[[:space:]]+= /etc/krb.conf$}
       ) }
       it { should contain_concat__fragment('krb5_libdefaults').with_content(
-        %r{^  krb4_realms   = /etc/krb.realms$}
+        %r{[[:space:]]+krb4_realms[[:space:]]+= /etc/krb.realms$}
       ) }
       it { should contain_concat__fragment('krb5_libdefaults').with_content(
-        %r{^  kdc_timesync  = 1$}
+        %r{[[:space:]]+kdc_timesync[[:space:]]+= 1$}
       ) }
       it { should contain_concat__fragment('krb5_libdefaults').with_content(
-        %r{^  ccache_type   = 4$}
+        %r{[[:space:]]+ccache_type[[:space:]]+= 4$}
       ) }
       it { should contain_concat__fragment('krb5_libdefaults').with_content(
-        %r{^  forwardable   = false$}
+        %r{[[:space:]]+forwardable[[:space:]]+= false$}
       ) }
       it { should contain_concat__fragment('krb5_libdefaults').with_content(
-        %r{^  proxiable     = false$}
+        %r{[[:space:]]+proxiable[[:space:]]+= false$}
       ) }
       it { should contain_concat__fragment('krb5_libdefaults').with_content(
-        %r{^  rdns          = true$}
+        %r{[[:space:]]+rdns[[:space:]]+= true$}
       ) }
       it { should contain_concat__fragment('krb5_logging').with(
         'target' => 'krb5_config',
@@ -274,19 +274,19 @@ describe 'kerberos', :type => :class do
         %r{^\[login\]$}
       ) }
       it { should contain_concat__fragment('krb5_login').without_content(
-        %r{^  aklog_path      = .*$}
+        %r{[[:space:]]+aklog_path[[:space:]]+= .*$}
       ) }
       it { should contain_concat__fragment('krb5_login').with_content(
-        %r{^  krb4_convert     = false$}
+        %r{[[:space:]]+krb4_convert[[:space:]]+= false$}
       ) }
       it { should contain_concat__fragment('krb5_login').with_content(
-        %r{^  krb4_get_tickets = false$}
+        %r{[[:space:]]+krb4_get_tickets[[:space:]]+= false$}
       ) }
       it { should contain_concat__fragment('krb5_login').with_content(
-        %r{^  krb5_get_tickets = true$}
+        %r{[[:space:]]+krb5_get_tickets[[:space:]]+= true$}
       ) }
       it { should contain_concat__fragment('krb5_login').with_content(
-        %r{^  krb_run_aklog   = false$}
+        %r{[[:space:]]+krb_run_aklog[[:space:]]+= false$}
       ) }
     end
     describe 'when ensure is absent' do
@@ -344,28 +344,28 @@ describe 'kerberos', :type => :class do
         }
       end
       it { should contain_concat__fragment('krb5_libdefaults').with_content(
-        %r{^  default_realm = example.org$}
+        %r{^[[:space:]]+default_realm[[:space:]]+= example.org$}
       ) }
       it { should contain_concat__fragment('krb5_libdefaults').with_content(
-        %r{^  krb4_config   = /this/is/a/bad.idea$}
+        %r{^[[:space:]]+krb4_config[[:space:]]+= /this/is/a/bad.idea$}
       ) }
       it { should contain_concat__fragment('krb5_libdefaults').with_content(
-        %r{^  krb4_realms   = /this/is/a/bad.idea.too$}
+        %r{^[[:space:]]+krb4_realms[[:space:]]+= /this/is/a/bad.idea.too$}
       ) }
       it { should contain_concat__fragment('krb5_libdefaults').with_content(
-        %r{^  kdc_timesync  = 66$}
+        %r{^[[:space:]]+kdc_timesync[[:space:]]+= 66$}
       ) }
       it { should contain_concat__fragment('krb5_libdefaults').with_content(
-        %r{^  ccache_type   = 1$}
+        %r{^[[:space:]]+ccache_type[[:space:]]+= 1$}
       ) }
       it { should contain_concat__fragment('krb5_libdefaults').with_content(
-        %r{^  forwardable   = true$}
+        %r{^[[:space:]]+forwardable[[:space:]]+= true$}
       ) }
       it { should contain_concat__fragment('krb5_libdefaults').with_content(
-        %r{^  proxiable     = true$}
+        %r{^[[:space:]]+proxiable[[:space:]]+= true$}
       ) }
       it { should contain_concat__fragment('krb5_libdefaults').with_content(
-        %r{^  rdns          = false$}
+        %r{^[[:space:]]+rdns[[:space:]]+= false$}
       ) }
     end
     describe 'when customising the login settings' do
@@ -379,19 +379,19 @@ describe 'kerberos', :type => :class do
         }
       end
       it { should contain_concat__fragment('krb5_login').with_content(
-        %r{^  aklog_path      = /path/to/bin/aklog.sh$}
+        %r{^[[:space:]]+aklog_path[[:space:]]+= /path/to/bin/aklog.sh$}
       ) }
       it { should contain_concat__fragment('krb5_login').with_content(
-        %r{^  krb4_convert     = true$}
+        %r{^[[:space:]]+krb4_convert[[:space:]]+= true$}
       ) }
       it { should contain_concat__fragment('krb5_login').with_content(
-        %r{^  krb4_get_tickets = true$}
+        %r{^[[:space:]]+krb4_get_tickets[[:space:]]+= true$}
       ) }
       it { should contain_concat__fragment('krb5_login').with_content(
-        %r{^  krb5_get_tickets = false$}
+        %r{^[[:space:]]+krb5_get_tickets[[:space:]]+= false$}
       ) }
       it { should contain_concat__fragment('krb5_login').with_content(
-        %r{^  krb_run_aklog   = true$}
+        %r{^[[:space:]]+krb_run_aklog[[:space:]]+= true$}
       ) }
     end
   end
