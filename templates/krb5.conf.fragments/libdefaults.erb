@@ -1,18 +1,28 @@
-
 [libdefaults]
-  default_realm    = <%= @default_realm %>
-  krb4_config      = <%= @krb4_config %>
-  krb4_realms      = <%= @krb4_realms %>
-  kdc_timesync     = <%= @kdc_timesync %>
-  ccache_type      = <%= @ccache_type %>
-  forwardable      = <%= @forwardable %>
-  proxiable        = <%= @proxiable %>
-  rdns             = <%= @rdns %>
-  dns_lookup_realm = <%= @dns_lookup_kdc %>
-  dns_lookup_kdc   = <%= @dns_lookup_kdc %>
+  default_realm        = <%= @default_realm %>
+  krb4_config          = <%= @krb4_config %>
+  krb4_realms          = <%= @krb4_realms %>
+  kdc_timesync         = <%= @kdc_timesync %>
+  ccache_type          = <%= @ccache_type %>
+  forwardable          = <%= @forwardable %>
+  proxiable            = <%= @proxiable %>
+  rdns                 = <%= @rdns %>
+  dns_lookup_realm     = <%= @dns_lookup_kdc %>
+  dns_lookup_kdc       = <%= @dns_lookup_kdc %>
+  allow_weak_crypto    = <%= @allow_weak_crypto %>
   <%- if @ticket_lifetime -%>
-  ticket_lifetime  = <%= @ticket_lifedime %>
+  ticket_lifetime      = <%= @ticket_lifedime %>
   <%- end -%>
   <%- if @renew_lifetime -%>
-  renew_lifetime = <%= @renew_lifetime %>
+  renew_lifetime       = <%= @renew_lifetime %>
   <%- end -%>
+  <%- if @default_tgs_enctypes -%>
+  default_tgs_enctypes = <%= @default_tgs_enctypes %>
+  <%- end -%>
+  <%- if @default_tkt_enctypes -%>
+  default_tkt_enctypes = <%= @default_tkt_enctypes %>
+  <%- end -%>
+  <%- if @permitted_enctypes -%>
+  permitted_enctypes = <%= @permitted_enctypes %>
+  <%- end -%>
+
